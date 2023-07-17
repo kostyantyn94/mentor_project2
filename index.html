@@ -4,14 +4,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="shortcut icon" href="images/favicon-32x32.png" type="image/x-icon">
   <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="css/style.min.css">
-  <title>Frontend Mentor | QR code component</title>
+  <title>mentor_project_03</title>
 </head>
 
 <body>
-  <div class="one">Hello asd123123</div>
+  <div class="container">
+    <div class="menu">
+      <div class="menu__item">
+        <div class="menu__number menu__number_active">1</div>
+        <div class="menu__text">
+          <div class="menu__text-step">STEP 1</div>
+          <div class="menu__text-descr">YOUR INFO</div>
+        </div>
+      </div>
+      <div class="menu__item">
+        <div class="menu__number">2</div>
+        <div class="menu__text">
+          <div class="menu__text-step">STEP 2</div>
+          <div class="menu__text-descr">SELECT PLAN</div>
+        </div>
+      </div>
+      <div class="menu__item">
+        <div class="menu__number">3</div>
+        <div class="menu__text">
+          <div class="menu__text-step">STEP 3</div>
+          <div class="menu__text-descr">ADD-ONS</div>
+        </div>
+      </div>
+      <div class="menu__item">
+        <div class="menu__number">4</div>
+        <div class="menu__text">
+          <div class="menu__text-step">STEP 4</div>
+          <div class="menu__text-descr">SUMMARY</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info">
+      <h1 class="info__header">Personal info</h1>
+      <h2 class="info__subheader">Please provide your name, email address, and phone number.</h2>
+      <form class="info__form" id="form" action="#">
+        <label class="info__label">Name<br>
+          <input class="info__input" required maxlength="20" name="name" placeholder="e.g. Stephen King" type="text">
+        </label>
+        <label class="info__label">Email Address<br>
+          <input class="info__input" required name="email" placeholder="e.g. stephenking@lorem.com" type="email">
+        </label>
+        <label class="info__label">Phone Number<br>
+          <input class="info__input" minlength="10" maxlength="15" required name="phone"
+            placeholder="e.g. +1 234 567 890" type="tel">
+        </label>
+      </form>
+      <button class="info__btn" type="submit" form="form">Next Step</button>
+    </div>
+
+    <div class="plan">
+
+    </div>
+
+  </div>
+
+  <script src="js/script.js"></script>
+
 </body>
+
+
 
 </html>
