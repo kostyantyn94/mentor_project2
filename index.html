@@ -44,10 +44,10 @@
       </div>
     </section>
 
-    <section class="info">
+    <section class="info hidden">
       <h1 class="info__header section__header">Personal info</h1>
       <h2 class="info__subheader section__subheader">Please provide your name, email address, and phone number.</h2>
-      <form class="info__form" id="form" action="#">
+      <form class="info__form" id="form" action="">
         <label class="info__label">Name<br>
           <input class="info__input" name="name" placeholder="e.g. Stephen King" type="text">
         </label>
@@ -61,7 +61,7 @@
       <button class="info__btn" type="submit" form="form">Next Step</button>
     </section>
 
-    <section class="plan hidden">
+    <section class="plan">
       <h1 class="plan__header section__header">Select your plan</h1>
       <h2 class="plan__subheader section__subheader">You have the option of monthly or yearly billing.</h2>
 
@@ -83,15 +83,19 @@
         </div>
         <div class="plan__time">
           <div class="plan__time-wrapper">
-            <span class="plan__time-month">Monthly</span>
+            <span class="plan__time-month plan__time_active">Monthly</span>
+            <label class="plan__switch">
+              <input class="plan__input" type="checkbox">
+              <span class="plan__slider"></span>
+            </label>
             <span class="plan__time-year">Yearly</span>
           </div>
         </div>
       </div>
 
       <div class="plan__btns">
-        <button class="platn__btn-back">Go Back</button>
-        <button class="platn__btn-next">Next Step</button>
+        <button class="plan__btns-back">Go Back</button>
+        <button class="plan__btns-next">Next Step</button>
       </div>
 
     </section>
