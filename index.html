@@ -13,7 +13,7 @@
 
 <body>
   <div class="container">
-    <div class="menu">
+    <section class="menu">
       <div class="menu__item">
         <div class="menu__number menu__number_active">1</div>
         <div class="menu__text">
@@ -42,11 +42,11 @@
           <div class="menu__text-descr">SUMMARY</div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="info">
-      <h1 class="info__header">Personal info</h1>
-      <h2 class="info__subheader">Please provide your name, email address, and phone number.</h2>
+    <section class="info hidden">
+      <h1 class="info__header section__header">Personal info</h1>
+      <h2 class="info__subheader section__subheader">Please provide your name, email address, and phone number.</h2>
       <form class="info__form" id="form" action="#">
         <label class="info__label">Name<br>
           <input class="info__input" required maxlength="20" name="name" placeholder="e.g. Stephen King" type="text">
@@ -60,11 +60,42 @@
         </label>
       </form>
       <button class="info__btn" type="submit" form="form">Next Step</button>
-    </div>
+    </section>
 
-    <div class="plan">
+    <section class="plan">
+      <h1 class="plan__header section__header">Select your plan</h1>
+      <h2 class="plan__subheader section__subheader">You have the option of monthly or yearly billing.</h2>
 
-    </div>
+      <div class="plan__wrapper">
+        <div class="plan__item">
+          <img src="/images/icon-arcade.svg" alt="Arcade" class="plan__icon">
+          <div class="plan__name">Arcade</div>
+          <div class="plan__price">$9/mo</div>
+        </div>
+        <div class="plan__item">
+          <img src="/images/icon-advanced.svg" alt="Advanced" class="plan__icon">
+          <div class="plan__name">Advanced</div>
+          <div class="plan__price">$12/mo</div>
+        </div>
+        <div class="plan__item">
+          <img src="/images/icon-pro.svg" alt="Pro" class="plan__icon">
+          <div class="plan__name">Pro</div>
+          <div class="plan__price">$15/mo</div>
+        </div>
+        <div class="plan__time">
+          <div class="plan__time-wrapper">
+            <span class="plan__time-month">Monthly</span>
+            <span class="plan__time-year">Yearly</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="plan__btns">
+        <button class="platn__btn-back">Go Back</button>
+        <button class="platn__btn-next">Next Step</button>
+      </div>
+
+    </section>
 
   </div>
 
