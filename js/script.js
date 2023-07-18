@@ -167,6 +167,10 @@ info_btn.onclick = (e) => {
 const plan_type = document.querySelectorAll('.plan__item');
 let activePlan = null;
 
+const plan_back = document.querySelector('.plan__btns-back');
+const plan_next = document.querySelector('.plan__btns-next');
+
+plan_next.disabled = true
 
 plan_type.forEach(elem =>{
     elem.addEventListener('click', (e) => {
@@ -178,6 +182,10 @@ plan_type.forEach(elem =>{
           }
 
         activePlan = e.currentTarget;
+
+        if (plan_next.disabled == true) {
+            plan_next.disabled = false
+        }
     })
 })
 
@@ -199,12 +207,8 @@ switcher.onclick = () => {
 }
 
 
-
-const plan_back = document.querySelector('.plan__btns-back');
-
-const plan_next = document.querySelector('.plan__btns-next');
-
 plan_back.onclick = () => {
     info.classList.remove('hidden')
     plan.classList.add('hidden')
 }
+
