@@ -46,6 +46,12 @@ info_inputs.forEach(element => {
                 globalState.name.error = "Field can not be empty";
                 error_block_name.innerHTML = globalState.name.error;
             }
+            else if (element.value.length > 20) {
+                element.style.outline = "1px solid red"
+                element.before(error_block_name);
+                globalState.name.error = "Name can not be longer than 20 characters";
+                error_block_name.innerHTML = globalState.name.error;
+            }
             else{
                 error_block_name.innerHTML = ''
                 error_block_name.remove()
@@ -95,10 +101,16 @@ info_inputs.forEach(element => {
                 globalState.phone.error = "Your phone number must contain only digits";
                 error_block_phone.innerHTML = globalState.phone.error;
             }
+            else if (element.value.length > 15) {
+                element.style.outline = "1px solid red"
+                element.before(error_block_phone);
+                globalState.phone.error = "Phone number can not be longer than 15 characters";
+                error_block_phone.innerHTML = globalState.phone.error;
+            }
             else if (element.value.length == 0) {
                 element.style.outline = "1px solid red"
                 element.before(error_block_phone);
-                globalState.name.error = "Field can not be empty";
+                globalState.phone.error = "Field can not be empty";
                 error_block_phone.innerHTML = globalState.phone.error;
             }
             else{

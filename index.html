@@ -44,25 +44,24 @@
       </div>
     </section>
 
-    <section class="info hidden">
+    <section class="info">
       <h1 class="info__header section__header">Personal info</h1>
       <h2 class="info__subheader section__subheader">Please provide your name, email address, and phone number.</h2>
       <form class="info__form" id="form" action="#">
         <label class="info__label">Name<br>
-          <input class="info__input" required maxlength="20" name="name" placeholder="e.g. Stephen King" type="text">
+          <input class="info__input" name="name" placeholder="e.g. Stephen King" type="text">
         </label>
         <label class="info__label">Email Address<br>
-          <input class="info__input" required name="email" placeholder="e.g. stephenking@lorem.com" type="email">
+          <input class="info__input" name="email" placeholder="e.g. stephenking@lorem.com" type="email">
         </label>
         <label class="info__label">Phone Number<br>
-          <input class="info__input" minlength="10" maxlength="15" required name="phone"
-            placeholder="e.g. +1 234 567 890" type="tel">
+          <input class="info__input" name="phone" placeholder="e.g. +1 234 567 890" type="tel">
         </label>
       </form>
       <button class="info__btn" type="submit" form="form">Next Step</button>
     </section>
 
-    <section class="plan">
+    <section class="plan hidden">
       <h1 class="plan__header section__header">Select your plan</h1>
       <h2 class="plan__subheader section__subheader">You have the option of monthly or yearly billing.</h2>
 
