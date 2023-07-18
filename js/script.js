@@ -17,6 +17,8 @@ const globalState = {
     }
 }
 
+console.log(Number('+$1/mo'))
+
 let error_block_name = document.createElement('div');
 error_block_name.classList.add('info_error');
 error_block_name.style.cssText = "font-size: 14px; color: red; font-weight: 700; position: absolute; top: 0; right: 0;"
@@ -176,16 +178,18 @@ plan_type.forEach(elem =>{
     elem.addEventListener('click', (e) => {
 
         e.currentTarget.classList.add("plan__item_active");
-
         if ((activePlan !== null && activePlan !== e.currentTarget)) {
             activePlan.classList.remove("plan__item_active");
           }
-
+        
         activePlan = e.currentTarget;
+
+        globalState.plan.type = e.currentTarget.children[1].innerHTML;
 
         if (plan_next.disabled == true) {
             plan_next.disabled = false
         }
+
     })
 })
 
@@ -193,15 +197,27 @@ const switcher = document.querySelector('.plan__slider');
 const month = document.querySelector('.plan__time-month');
 const year = document.querySelector('.plan__time-year');
 
+const addons = document.querySelector('.addons')
+const price_n = document.querySelectorAll('.plan__price-number')
+
 
 switcher.onclick = () => {
     if(month.classList.contains('plan__time_active')) {
         month.classList.remove('plan__time_active');
         year.classList.add('plan__time_active');
+        globalState.plan.time = 'year'
+        for (let elem of price_n) {
+            elem.innerHTML = Number(elem.innerHTML) * 10
+        }
+
     }
     else {
         month.classList.add('plan__time_active');
         year.classList.remove('plan__time_active');
+        globalState.plan.time = 'month'
+        for (let elem of price_n) {
+            elem.innerHTML = Number(elem.innerHTML) / 10
+        }
     }
 
 }
@@ -212,3 +228,42 @@ plan_back.onclick = () => {
     plan.classList.add('hidden')
 }
 
+const adds_price = document.querySelectorAll('.addons__price-number')
+
+plan_next.onclick = () => {
+    console.log(globalState.plan.type)
+    console.log(globalState.plan.time)
+    plan.classList.add('hidden');
+    addons.classList.remove('hidden');
+    for (let elem of menu_number) {
+        if (elem.innerHTML == '3') {
+            elem.classList.add('menu__number_active')
+        }
+        else {
+            elem.classList.remove('menu__number_active')
+        }
+    }
+    if (globalState.plan.time == 'year') {
+        for (let elem of adds_price) {
+            elem.innerHTML = Number(elem.innerHTML) * 10
+        }
+    }
+    else {
+        elem.innerHTML = Number(elem.innerHTML) / 10
+    }
+}
+
+const adds = document.querySelectorAll('.addons__item');
+
+adds.forEach(elem => {
+    elem.addEventListener('click', () => {
+        elem.children[0].checked = !elem.children[0].checked
+        if (elem.children[0].checked == true) {
+            elem.style.backgroundColor = '#F8F9FF'
+
+        }
+        else {
+            elem.style.backgroundColor = '#ffffff'
+        }
+    }) 
+})
