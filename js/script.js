@@ -1,3 +1,5 @@
+// global State object
+
 const globalState = {
     name: {
         text: '',
@@ -13,11 +15,30 @@ const globalState = {
     },
     plan: {
         type: '',
-        time: ''
-    }
+        time: 'month',
+        price: ''
+    },
+    addons: {
+        online: {
+            item: document.querySelector('#online'),
+            checked: true
+        },
+        storage: {
+            item: document.querySelector('#storage'),
+            checked: false
+        },
+        profile: {
+            item: document.querySelector('#profile'),
+            checked: false
+        },
+        m_price: ["+$1/mo", "+$2/mo", "+$2/mo"],
+        y_price: ["+$10/mo", "+$20/mo", "+$20/mo"]
+    },
+    total: 0
 }
 
-console.log(Number('+$1/mo'))
+
+// Info block script
 
 let error_block_name = document.createElement('div');
 error_block_name.classList.add('info_error');
@@ -166,6 +187,8 @@ info_btn.onclick = (e) => {
 }
 
 
+// Plan block script
+
 const plan_type = document.querySelectorAll('.plan__item');
 let activePlan = null;
 
@@ -178,18 +201,16 @@ plan_type.forEach(elem =>{
     elem.addEventListener('click', (e) => {
 
         e.currentTarget.classList.add("plan__item_active");
+        globalState.plan.type = e.currentTarget.children[1].innerHTML;
         if ((activePlan !== null && activePlan !== e.currentTarget)) {
             activePlan.classList.remove("plan__item_active");
           }
         
         activePlan = e.currentTarget;
-
-        globalState.plan.type = e.currentTarget.children[1].innerHTML;
-
+          
         if (plan_next.disabled == true) {
             plan_next.disabled = false
         }
-
     })
 })
 
@@ -219,20 +240,27 @@ switcher.onclick = () => {
             elem.innerHTML = Number(elem.innerHTML) / 10
         }
     }
-
 }
 
 
 plan_back.onclick = () => {
     info.classList.remove('hidden')
     plan.classList.add('hidden')
+    for (let elem of menu_number) {
+        if (elem.innerHTML == '1') {
+            elem.classList.add('menu__number_active')
+        }
+        else {
+            elem.classList.remove('menu__number_active')
+        }
+    }
 }
 
-const adds_price = document.querySelectorAll('.addons__price-number')
+
+const adds_price = document.querySelectorAll('.addons__price')
 
 plan_next.onclick = () => {
-    console.log(globalState.plan.type)
-    console.log(globalState.plan.time)
+    
     plan.classList.add('hidden');
     addons.classList.remove('hidden');
     for (let elem of menu_number) {
@@ -244,14 +272,46 @@ plan_next.onclick = () => {
         }
     }
     if (globalState.plan.time == 'year') {
-        for (let elem of adds_price) {
-            elem.innerHTML = Number(elem.innerHTML) * 10
+
+        for (let i = 0; i < globalState.addons.y_price.length; i++) {
+            adds_price[i].innerHTML = globalState.addons.y_price[i]
+        }
+
+        switch (globalState.plan.type) {
+            case 'Arcade': 
+            console.log('Arcade')
+            globalState.plan.price = '$90/mo'
+                break;
+            case 'Advanced': 
+            console.log('Advanced')
+            globalState.plan.price = '$120/mo'
+                break;
+            case 'Pro': 
+            console.log('Pro')
+            globalState.plan.price = '$150/mo'
+                break;
         }
     }
     else {
-        elem.innerHTML = Number(elem.innerHTML) / 10
+        for (let i = 0; i < globalState.addons.m_price.length; i++) {
+            adds_price[i].innerHTML = globalState.addons.m_price[i]
+        }
+        switch (globalState.plan.type) {
+            case 'Arcade': 
+            globalState.plan.price = '$9/mo'
+                break;
+            case 'Advanced': 
+            globalState.plan.price = '$12/mo'
+                break;
+            case 'Pro': 
+            globalState.plan.price = '$15/mo'
+                break;
+        }
     }
+
 }
+
+// Addons block script
 
 const adds = document.querySelectorAll('.addons__item');
 
@@ -267,3 +327,92 @@ adds.forEach(elem => {
         }
     }) 
 })
+
+const addons_back = document.querySelector('.addons__btns-back');
+const addons_next = document.querySelector('.addons__btns-next');
+
+addons_back.onclick = () => {
+    addons.classList.add('hidden')
+    plan.classList.remove('hidden')
+    for (let elem of menu_number) {
+        if (elem.innerHTML == '2') {
+            elem.classList.add('menu__number_active')
+        }
+        else {
+            elem.classList.remove('menu__number_active')
+        }
+    }
+}
+
+addons_next.onclick = () => {
+    addons.classList.add('hidden')
+    finish.classList.remove('hidden')
+    for (let elem of menu_number) {
+        if (elem.innerHTML == '4') {
+            elem.classList.add('menu__number_active')
+        }
+        else {
+            elem.classList.remove('menu__number_active')
+        }
+    }
+    if(plan.time == 'month') {
+        document.querySelector('.finish__plan-type').innerHTML = `${globalState.plan.type} <span class='finish__plan-time'>(Monthly)</span>`
+        if (globalState.addons.online.checked == true) {
+            document.querySelector('.finish__addon-online').classList.toggle('hidden')
+            document.querySelector('finish__addon-price-online').innerHTML = addons.m_price[0]
+            globalState.total += addons.m_price[0].match(/\d+/)[0]
+        }
+        if (globalState.addons.storage.checked == true) {
+            document.querySelector('.finish__addon-storage').classList.toggle('hidden')
+            document.querySelector('finish__addon-price-storage').innerHTML = addons.m_price[1]
+            globalState.total += addons.m_price[1].match(/\d+/)[0]
+        }
+        if (globalState.addons.profile.checked == true) {
+            document.querySelector('.finish__addon-profile').classList.toggle('hidden')
+            document.querySelector('finish__addon-price-storage').innerHTML = addons.m_price[2]
+            globalState.total += addons.m_price[2].match(/\d+/)[0]
+        }
+    }
+    else {
+        document.querySelector('.finish__plan-type').innerHTML = `${globalState.plan.type} <span class='finish__plan-time'>(Yearly)</span>`
+        if (globalState.addons.online.checked == true) {
+            document.querySelector('.finish__addon-online').classList.toggle('hidden')
+            document.querySelector('finish__addon-price-online').innerHTML = addons.y_price[0]
+            globalState.total += addons.y_price[0].match(/\d+/)[0]
+        }
+        if (globalState.addons.storage.checked == true) {
+            document.querySelector('.finish__addon-storage').classList.toggle('hidden')
+            document.querySelector('finish__addon-price-storage').innerHTML = addons.y_price[1]
+            globalState.total += addons.y_price[1].match(/\d+/)[0]
+        }
+        if (globalState.addons.profile.checked == true) {
+            document.querySelector('.finish__addon-profile').classList.toggle('hidden')
+            document.querySelector('finish__addon-price-storage').innerHTML = addons.y_price[2]
+            globalState.total += addons.y_price[3].match(/\d+/)[0]
+        }
+    }
+
+    document.querySelector('.finish__plan-price').innerHTML = globalState.plan.price;
+
+
+    
+}
+
+console.log(globalState.total)
+// Finish block script
+
+const finish = document.querySelector('.finish');
+const finish_change = document.querySelector('.finish__plan-change');
+
+finish_change.onclick = () => {
+    finish.classList.add('hidden')
+    plan.classList.remove('hidden')
+    for (let elem of menu_number) {
+        if (elem.innerHTML == '2') {
+            elem.classList.add('menu__number_active')
+        }
+        else {
+            elem.classList.remove('menu__number_active')
+        }
+    }
+}

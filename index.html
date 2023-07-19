@@ -13,7 +13,7 @@
 
 <body>
   <div class="container">
-    <section class="menu ">
+    <section class="menu">
       <div class="menu__item">
         <div class="menu__number menu__number_active">1</div>
         <div class="menu__text">
@@ -44,7 +44,7 @@
       </div>
     </section>
 
-    <section class="info">
+    <section class="info ">
       <h1 class="info__header section__header">Personal info</h1>
       <h2 class="info__subheader section__subheader">Please provide your name, email address, and phone number.</h2>
       <form class="info__form" id="form" action="">
@@ -104,34 +104,72 @@
       <h1 class="plan__header section__header">Pick add-ons</h1>
       <h2 class="plan__subheader section__subheader">Add-ons help enhance your gaming experience.</h2>
       <div class="addons__wrapper">
-        <div class="addons__item">
-          <input id="online" class="addonts__input" type="checkbox">
+        <div id="online" class="addons__item">
+          <input class="addonts__input" type="checkbox">
           <div class="addons__text">
             <div class="addons__text-main">Online service</div>
             <div class="addons__text-descr">Access to multiplayer games</div>
           </div>
-          <div class="addons__price">+$<span class="addons__price-number">1</span>/mo</div>
+          <div class="addons__price"></div>
         </div>
-        <div class="addons__item">
-          <input id="storage" class="addonts__input" type="checkbox">
+        <div id="storage" class="addons__item">
+          <input class="addonts__input" type="checkbox">
           <div class="addons__text">
             <div class="addons__text-main">Larger storage</div>
             <div class="addons__text-descr">Extra 1TB of cloud save</div>
           </div>
-          <div class="addons__price">+$<span class="addons__price-number">2</span>/mo</div>
+          <div class="addons__price"></div>
         </div>
-        <div class="addons__item">
-          <input id="profile" class="addonts__input" type="checkbox">
+        <div id="profile" class="addons__item">
+          <input class="addonts__input" type="checkbox">
           <div class="addons__text">
             <div class="addons__text-main">Customizable profile</div>
             <div class="addons__text-descr">Custom theme on your profile</div>
           </div>
-          <div class="addons__price">+$<span class="addons__price-number">2</span>/mo</div>
+          <div class="addons__price"></div>
         </div>
       </div>
       <div class="addons__btns">
         <button class="addons__btns-back">Go Back</button>
         <button class="addons__btns-next">Next Step</button>
+      </div>
+    </section>
+
+    <section class="finish hidden">
+      <h1 class="plan__header section__header">Finishing up</h1>
+      <h2 class="plan__subheader section__subheader">Double-check everything looks OK before confirming.</h2>
+
+      <div class="finish__wrapper">
+        <div class="finish__plan">
+          <div class="finish__plan-type">Arcade <span class="finish__plan-time">(Monthly)</span></div>
+          <div class="finish__plan-change">Change</div>
+          <span class="finish__plan-price">$9/mo</span>
+        </div>
+        <hr>
+        <div class="finish__addons">
+          <div class="finish__addon finish__addon-online ">
+            <div class="finish__addon-title">Online service</div>
+            <div class="finish__addon-price finish__addon-price-online">+$1/mo</div>
+          </div>
+          <div class="finish__addon finish__addon-storage hidden">
+            <div class="finish__addon-title">Larger storage</div>
+            <div class="finish__addon-price finish__addon-price-storage">+$2/mo</div>
+          </div>
+          <div class="finish__addon finish__addon-profile hidden">
+            <div class="finish__addon-title">Customizable profile</div>
+            <div class="finish__addon-price finish__addon-price-profile">+$2/mo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="finish__total">
+        <div class="finish__total-title">Total (per <span class="finish__total-time">month</span>)</div>
+        <div class="finish__total-price">+$12/mo</div>
+      </div>
+
+      <div class="finish__btns">
+        <button class="finish__btns-back">Go Back</button>
+        <button class="finish__btns-next">Next Step</button>
       </div>
     </section>
 
