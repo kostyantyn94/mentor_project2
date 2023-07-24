@@ -52,13 +52,21 @@ info_btn.onclick = (e) => {
 // Plan block script
 
 const plan_type = document.querySelectorAll('.plan__item');
-let activePlan = null;
 
+
+
+
+// get "back" and "next" buttons
 const plan_back = document.querySelector('.plan__btns-back');
 const plan_next = document.querySelector('.plan__btns-next');
 
+// disable next button when there is no plan selected
 plan_next.disabled = true
 
+// declare variable with null value
+let activePlan = null;
+
+// click function for plan item
 plan_type.forEach(elem =>{
     elem.addEventListener('click', (e) => {
 
@@ -75,6 +83,9 @@ plan_type.forEach(elem =>{
         }
     })
 })
+
+
+// switcher functionality
 
 const switcher = document.querySelector('.plan__slider');
 const month = document.querySelector('.plan__time-month');
@@ -222,36 +233,36 @@ addons_next.onclick = () => {
         document.querySelector('.finish__plan-type').innerHTML = `${globalState.plan.type} <span class='finish__plan-time'>(Monthly)</span>`
         if (globalState.addons.online.checked == true) {
             document.querySelector('.finish__addon-online').classList.toggle('hidden')
-            document.querySelector('finish__addon-price-online').innerHTML = addons.m_price[0]
-            globalState.total += addons.m_price[0].match(/\d+/)[0]
+            document.querySelector('.finish__addon-price-online').innerHTML = globalState.addons.m_price[0]
+            globalState.total += globalState.addons.m_price[0].match(/\d+/)[0]
         }
         if (globalState.addons.storage.checked == true) {
             document.querySelector('.finish__addon-storage').classList.toggle('hidden')
-            document.querySelector('finish__addon-price-storage').innerHTML = addons.m_price[1]
-            globalState.total += addons.m_price[1].match(/\d+/)[0]
+            document.querySelector('.finish__addon-price-storage').innerHTML = globalState.addons.m_price[1]
+            globalState.total += globalState.addons.m_price[1].match(/\d+/)[0]
         }
         if (globalState.addons.profile.checked == true) {
             document.querySelector('.finish__addon-profile').classList.toggle('hidden')
-            document.querySelector('finish__addon-price-storage').innerHTML = addons.m_price[2]
-            globalState.total += addons.m_price[2].match(/\d+/)[0]
+            document.querySelector('.finish__addon-price-storage').innerHTML = globalState.addons.m_price[2]
+            globalState.total += globalState.addons.m_price[2].match(/\d+/)[0]
         }
     }
     else {
         document.querySelector('.finish__plan-type').innerHTML = `${globalState.plan.type} <span class='finish__plan-time'>(Yearly)</span>`
         if (globalState.addons.online.checked == true) {
             document.querySelector('.finish__addon-online').classList.toggle('hidden')
-            document.querySelector('finish__addon-price-online').innerHTML = addons.y_price[0]
-            globalState.total += addons.y_price[0].match(/\d+/)[0]
+            document.querySelector('.finish__addon-price-online').innerHTML = globalState.addons.y_price[0]
+            globalState.total += globalState.addons.y_price[0].match(/\d+/)[0]
         }
         if (globalState.addons.storage.checked == true) {
             document.querySelector('.finish__addon-storage').classList.toggle('hidden')
-            document.querySelector('finish__addon-price-storage').innerHTML = addons.y_price[1]
-            globalState.total += addons.y_price[1].match(/\d+/)[0]
+            document.querySelector('.finish__addon-price-storage').innerHTML = globalState.addons.y_price[1]
+            globalState.total += globalState.addons.y_price[1].match(/\d+/)[0]
         }
         if (globalState.addons.profile.checked == true) {
             document.querySelector('.finish__addon-profile').classList.toggle('hidden')
-            document.querySelector('finish__addon-price-storage').innerHTML = addons.y_price[2]
-            globalState.total += addons.y_price[3].match(/\d+/)[0]
+            document.querySelector('.finish__addon-price-storage').innerHTML = globalState.addons.y_price[2]
+            globalState.total += globalState.addons.y_price[3].match(/\d+/)[0]
         }
     }
 
