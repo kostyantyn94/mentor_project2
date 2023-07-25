@@ -1,6 +1,21 @@
 import globalState from "./modules/_globalstate.js";
 import validate from "./modules/_validation.js";
 
+// declare variable for side menu
+
+const menu_number = document.querySelectorAll('.menu__number');
+
+// if page is refreshed menu number is set to 1 again
+
+for (let elem of menu_number) {
+    if (elem.innerHTML == '1') {
+        elem.classList.add('menu__number_active')
+    }
+    else {
+        elem.classList.remove('menu__number_active')
+    }
+}
+
 // getting the "next" button and disabling it
 
 const info_btn = document.querySelector('.info__btn');
@@ -27,7 +42,6 @@ let user_phone = globalState.phone.text;
 
 validate(info_btn, info_inputs, name_error, email_error, phone_error, user_name, user_email, user_phone);
 
-const menu_number = document.querySelectorAll('.menu__number');
 
 const info = document.querySelector('.info');
 const plan = document.querySelector('.plan');
@@ -45,7 +59,7 @@ info_btn.onclick = (e) => {
             elem.classList.remove('menu__number_active')
         }
     }
-    console.log(globalState)
+    
 }
 
 
@@ -146,28 +160,25 @@ plan_next.onclick = () => {
     }
     if (globalState.plan.time == 'year') {
 
-        for (let i = 0; i < globalState.addons.y_price.length; i++) {
-            adds_price[i].innerHTML = globalState.addons.y_price[i]
+        for (let i = 0; i < globalState.y_price.length; i++) {
+            adds_price[i].innerHTML = globalState.y_price[i]
         }
 
         switch (globalState.plan.type) {
-            case 'Arcade': 
-            console.log('Arcade')
+            case 'Arcade':
             globalState.plan.price = '$90/mo'
                 break;
-            case 'Advanced': 
-            console.log('Advanced')
+            case 'Advanced':
             globalState.plan.price = '$120/mo'
                 break;
             case 'Pro': 
-            console.log('Pro')
             globalState.plan.price = '$150/mo'
                 break;
         }
     }
     else {
-        for (let i = 0; i < globalState.addons.m_price.length; i++) {
-            adds_price[i].innerHTML = globalState.addons.m_price[i]
+        for (let i = 0; i < globalState.m_price.length; i++) {
+            adds_price[i].innerHTML = globalState.m_price[i]
         }
         switch (globalState.plan.type) {
             case 'Arcade': 
@@ -182,28 +193,57 @@ plan_next.onclick = () => {
         }
     }
 
-    console.log(globalState)
+    
 }
+
 
 // Addons block script
 
 const adds = document.querySelectorAll('.addons__item');
+
 
 adds.forEach(elem => {
     elem.addEventListener('click', () => {
         elem.children[0].checked = !elem.children[0].checked
         if (elem.children[0].checked == true) {
             elem.style.backgroundColor = '#F8F9FF'
-
+            switch (elem) {
+                case globalState.addons.online.item:
+                    globalState.addons.online.checked = true;
+                    break;
+                case globalState.addons.storage.item:
+                    globalState.addons.storage.checked = true;
+                    break;
+                case globalState.addons.profile.item:
+                    globalState.addons.profile.checked = true;
+                    break;
+                default:
+                    break;
+            }
         }
         else {
             elem.style.backgroundColor = '#ffffff'
+            switch (elem) {
+                case globalState.addons.online.item:
+                    globalState.addons.online.checked = false;
+                    break;
+                case globalState.addons.storage.item:
+                    globalState.addons.storage.checked = false;
+                    break;
+                case globalState.addons.profile.item:
+                    globalState.addons.profile.checked = false;
+                    break;
+                default:
+                    break;
+            }
         }
     }) 
 })
 
 const addons_back = document.querySelector('.addons__btns-back');
 const addons_next = document.querySelector('.addons__btns-next');
+
+
 
 addons_back.onclick = () => {
     addons.classList.add('hidden')
@@ -219,6 +259,23 @@ addons_back.onclick = () => {
 }
 
 addons_next.onclick = () => {
+    
+    // total price set to 0 in case user presses "change" button on finish
+
+    globalState.total = 0
+
+    // all addons blocks are hidden in case user presses "change" button on finish
+
+    let finish_adds = document.querySelectorAll('.finish__addon');
+
+    for (let elem of finish_adds) {
+        if (!elem.classList.contains('hidden')) {
+            elem.classList.add('hidden')
+        }
+    }
+
+    // change active step
+
     addons.classList.add('hidden')
     finish.classList.remove('hidden')
     for (let elem of menu_number) {
@@ -229,50 +286,55 @@ addons_next.onclick = () => {
             elem.classList.remove('menu__number_active')
         }
     }
-    if(plan.time == 'month') {
+
+    // set check values for addons in global State
+
+    if(globalState.plan.time == 'month') {
         document.querySelector('.finish__plan-type').innerHTML = `${globalState.plan.type} <span class='finish__plan-time'>(Monthly)</span>`
         if (globalState.addons.online.checked == true) {
             document.querySelector('.finish__addon-online').classList.toggle('hidden')
-            document.querySelector('.finish__addon-price-online').innerHTML = globalState.addons.m_price[0]
-            globalState.total += globalState.addons.m_price[0].match(/\d+/)[0]
+            document.querySelector('.finish__addon-price-online').innerHTML = globalState.m_price[0]
+            globalState.total += +globalState.m_price[0].match(/\d+/)
         }
         if (globalState.addons.storage.checked == true) {
             document.querySelector('.finish__addon-storage').classList.toggle('hidden')
-            document.querySelector('.finish__addon-price-storage').innerHTML = globalState.addons.m_price[1]
-            globalState.total += globalState.addons.m_price[1].match(/\d+/)[0]
+            document.querySelector('.finish__addon-price-storage').innerHTML = globalState.m_price[1]
+            globalState.total += +globalState.m_price[1].match(/\d+/)
         }
         if (globalState.addons.profile.checked == true) {
             document.querySelector('.finish__addon-profile').classList.toggle('hidden')
-            document.querySelector('.finish__addon-price-storage').innerHTML = globalState.addons.m_price[2]
-            globalState.total += globalState.addons.m_price[2].match(/\d+/)[0]
+            document.querySelector('.finish__addon-price-profile').innerHTML = globalState.m_price[2]
+            globalState.total += +globalState.m_price[2].match(/\d+/)
         }
     }
     else {
         document.querySelector('.finish__plan-type').innerHTML = `${globalState.plan.type} <span class='finish__plan-time'>(Yearly)</span>`
         if (globalState.addons.online.checked == true) {
             document.querySelector('.finish__addon-online').classList.toggle('hidden')
-            document.querySelector('.finish__addon-price-online').innerHTML = globalState.addons.y_price[0]
-            globalState.total += globalState.addons.y_price[0].match(/\d+/)[0]
+            document.querySelector('.finish__addon-price-online').innerHTML = globalState.y_price[0]
+            globalState.total += +globalState.y_price[0].match(/\d+/)
         }
         if (globalState.addons.storage.checked == true) {
             document.querySelector('.finish__addon-storage').classList.toggle('hidden')
-            document.querySelector('.finish__addon-price-storage').innerHTML = globalState.addons.y_price[1]
-            globalState.total += globalState.addons.y_price[1].match(/\d+/)[0]
+            document.querySelector('.finish__addon-price-storage').innerHTML = globalState.y_price[1]
+            globalState.total += +globalState.y_price[1].match(/\d+/)
         }
         if (globalState.addons.profile.checked == true) {
             document.querySelector('.finish__addon-profile').classList.toggle('hidden')
-            document.querySelector('.finish__addon-price-storage').innerHTML = globalState.addons.y_price[2]
-            globalState.total += globalState.addons.y_price[3].match(/\d+/)[0]
+            document.querySelector('.finish__addon-price-profile').innerHTML = globalState.y_price[2]
+            globalState.total += +globalState.y_price[2].match(/\d+/)
         }
     }
 
     document.querySelector('.finish__plan-price').innerHTML = globalState.plan.price;
 
+    globalState.total += +globalState.plan.price.match(/\d+/);
 
+    document.querySelector('.finish__total-price').innerHTML = `+$${globalState.total}/mo`
     
 }
 
-console.log(globalState.total)
+
 // Finish block script
 
 const finish = document.querySelector('.finish');
@@ -289,4 +351,28 @@ finish_change.onclick = () => {
             elem.classList.remove('menu__number_active')
         }
     }
+}
+
+// finish btn's
+
+const finish_back = document.querySelector('.finish__btns-back');
+const finish_next = document.querySelector('.finish__btns-next');
+
+finish_back.onclick = () => {
+    finish.classList.add('hidden')
+    addons.classList.remove('hidden')
+    for (let elem of menu_number) {
+        if (elem.innerHTML == '3') {
+            elem.classList.add('menu__number_active')
+        }
+        else {
+            elem.classList.remove('menu__number_active')
+        }
+    }
+}
+
+finish_next.onclick = () => {
+    finish.classList.add('hidden')
+    thanks.classList.remove('hidden')
+    console.log(globalState)
 }

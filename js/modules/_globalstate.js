@@ -21,7 +21,7 @@ const globalState = {
     addons: {
         online: {
             item: document.querySelector('#online'),
-            checked: true
+            checked: false
         },
         storage: {
             item: document.querySelector('#storage'),
@@ -30,10 +30,12 @@ const globalState = {
         profile: {
             item: document.querySelector('#profile'),
             checked: false
-        },
-        m_price: ["+$1/mo", "+$2/mo", "+$2/mo"],
-        y_price: ["+$10/mo", "+$20/mo", "+$20/mo"]
+        }
     },
+    m_price: ["+$1/mo", "+$2/mo", "+$2/mo"],
+
+    y_price: ["+$10/mo", "+$20/mo", "+$20/mo"],
+
     total: 0
 }
 
