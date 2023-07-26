@@ -358,7 +358,7 @@ finish_change.onclick = () => {
 const finish_back = document.querySelector('.finish__btns-back');
 const finish_next = document.querySelector('.finish__btns-next');
 
-const thanks = document.querySelector('.thanks');
+const thanks = document.querySelector('.thanks')
 
 finish_back.onclick = () => {
     finish.classList.add('hidden')
