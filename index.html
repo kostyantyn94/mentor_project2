@@ -4,14 +4,192 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="shortcut icon" href="images/favicon-32x32.png" type="image/x-icon">
   <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
   <link rel="stylesheet" href="css/style.min.css">
-  <title>Frontend Mentor | QR code component</title>
+  <title>mentor_project_03</title>
 </head>
 
 <body>
-  <div class="one">Hello asd123123</div>
+  <div class="container">
+    <section class="menu">
+      <div class="menu__item">
+        <div class="menu__number menu__number_active">1</div>
+        <div class="menu__text">
+          <div class="menu__text-step">STEP 1</div>
+          <div class="menu__text-descr">YOUR INFO</div>
+        </div>
+      </div>
+      <div class="menu__item">
+        <div class="menu__number">2</div>
+        <div class="menu__text">
+          <div class="menu__text-step">STEP 2</div>
+          <div class="menu__text-descr">SELECT PLAN</div>
+        </div>
+      </div>
+      <div class="menu__item">
+        <div class="menu__number">3</div>
+        <div class="menu__text">
+          <div class="menu__text-step">STEP 3</div>
+          <div class="menu__text-descr">ADD-ONS</div>
+        </div>
+      </div>
+      <div class="menu__item">
+        <div class="menu__number">4</div>
+        <div class="menu__text">
+          <div class="menu__text-step">STEP 4</div>
+          <div class="menu__text-descr">SUMMARY</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info">
+      <h1 class="info__header section__header">Personal info</h1>
+      <h2 class="info__subheader section__subheader">Please provide your name, email address, and phone number.</h2>
+      <form class="info__form" id="form" action="">
+        <label class="info__label">Name<br>
+          <input class="info__input" name="name" placeholder="e.g. Stephen King" type="text">
+        </label>
+        <label class="info__label">Email Address<br>
+          <input class="info__input" name="email" placeholder="e.g. stephenking@lorem.com" type="email">
+        </label>
+        <label class="info__label">Phone Number<br>
+          <input class="info__input" name="phone" placeholder="e.g. +1 234 567 890" type="tel">
+        </label>
+      </form>
+      <button class="info__btn" type="submit" form="form">Next Step</button>
+    </section>
+
+    <section class="plan hidden">
+      <h1 class="plan__header section__header">Select your plan</h1>
+      <h2 class="plan__subheader section__subheader">You have the option of monthly or yearly billing.</h2>
+
+      <div class="plan__wrapper">
+        <div class="plan__item">
+          <img src="/images/icon-arcade.svg" alt="Arcade" class="plan__icon">
+          <div class="plan__name">Arcade</div>
+          <div class="plan__price">$<span class="plan__price-number">9</span>/mo</div>
+        </div>
+        <div class="plan__item">
+          <img src="/images/icon-advanced.svg" alt="Advanced" class="plan__icon">
+          <div class="plan__name">Advanced</div>
+          <div class="plan__price">$<span class="plan__price-number">12</span>/mo</div>
+        </div>
+        <div class="plan__item">
+          <img src="/images/icon-pro.svg" alt="Pro" class="plan__icon">
+          <div class="plan__name">Pro</div>
+          <div class="plan__price">$<span class="plan__price-number">15</span>/mo</div>
+        </div>
+        <div class="plan__time">
+          <div class="plan__time-wrapper">
+            <span class="plan__time-month plan__time_active">Monthly</span>
+            <label class="plan__switch">
+              <input class="plan__input" type="checkbox">
+              <span class="plan__slider"></span>
+            </label>
+            <span class="plan__time-year">Yearly</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="plan__btns">
+        <button class="plan__btns-back">Go Back</button>
+        <button class="plan__btns-next">Next Step</button>
+      </div>
+
+    </section>
+
+    <section class="addons hidden">
+      <h1 class="plan__header section__header">Pick add-ons</h1>
+      <h2 class="plan__subheader section__subheader">Add-ons help enhance your gaming experience.</h2>
+      <div class="addons__wrapper">
+        <div id="online" class="addons__item">
+          <input class="addonts__input" type="checkbox">
+          <div class="addons__text">
+            <div class="addons__text-main">Online service</div>
+            <div class="addons__text-descr">Access to multiplayer games</div>
+          </div>
+          <div class="addons__price"></div>
+        </div>
+        <div id="storage" class="addons__item">
+          <input class="addonts__input" type="checkbox">
+          <div class="addons__text">
+            <div class="addons__text-main">Larger storage</div>
+            <div class="addons__text-descr">Extra 1TB of cloud save</div>
+          </div>
+          <div class="addons__price"></div>
+        </div>
+        <div id="profile" class="addons__item">
+          <input class="addonts__input" type="checkbox">
+          <div class="addons__text">
+            <div class="addons__text-main">Customizable profile</div>
+            <div class="addons__text-descr">Custom theme on your profile</div>
+          </div>
+          <div class="addons__price"></div>
+        </div>
+      </div>
+      <div class="addons__btns">
+        <button class="addons__btns-back">Go Back</button>
+        <button class="addons__btns-next">Next Step</button>
+      </div>
+    </section>
+
+    <section class="finish hidden">
+      <h1 class="plan__header section__header">Finishing up</h1>
+      <h2 class="plan__subheader section__subheader">Double-check everything looks OK before confirming.</h2>
+
+      <div class="finish__wrapper">
+        <div class="finish__plan">
+          <div class="finish__plan-type">Arcade <span class="finish__plan-time">(Monthly)</span></div>
+          <div class="finish__plan-change">Change</div>
+          <span class="finish__plan-price">$9/mo</span>
+        </div>
+        <hr>
+        <div class="finish__addons">
+          <div class="finish__addon finish__addon-online hidden">
+            <div class="finish__addon-title">Online service</div>
+            <div class="finish__addon-price finish__addon-price-online">+$1/mo</div>
+          </div>
+          <div class="finish__addon finish__addon-storage hidden">
+            <div class="finish__addon-title">Larger storage</div>
+            <div class="finish__addon-price finish__addon-price-storage">+$2/mo</div>
+          </div>
+          <div class="finish__addon finish__addon-profile hidden">
+            <div class="finish__addon-title">Customizable profile</div>
+            <div class="finish__addon-price finish__addon-price-profile">+$2/mo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="finish__total">
+        <div class="finish__total-title">Total (per <span class="finish__total-time">month</span>)</div>
+        <div class="finish__total-price">+$12/mo</div>
+      </div>
+
+      <div class="finish__btns">
+        <button class="finish__btns-back">Go Back</button>
+        <button class="finish__btns-next">Confirm</button>
+      </div>
+    </section>
+
+    <section class="thanks hidden">
+      <div class="wrapper">
+        <div class="thanks__image">
+          <img src="/images/icon-thank-you.svg" alt="checkmark">
+        </div>
+        <h1 class="thanks__header section__header">Thank you!</h1>
+        <h2 class="thanks__subheader section__subheader">Thanks for confirming your subscription! We hope you have fun
+          using our platform. If you ever need support, please feel free to email us at support@loremgaming.com.</h2>
+      </div>
+    </section>
+
+  </div>
+
+  <script type="module" src="js/script.js"></script>
+
 </body>
+
+
 
 </html>

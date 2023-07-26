@@ -1,0 +1,105 @@
+.finish
+    padding: 40px 0 16px 0
+    width: 450px
+    height: 100%
+    position: relative
+    &__wrapper
+        margin-top: 35px
+        padding: 16px 24px 24px 24px
+        width: 100%
+        border-radius: 8px
+        background-color: #F8F9FF
+    &__plan
+        display: grid
+        height: 45px
+        grid-template: 18px 20px / 1fr 1fr
+        row-gap: 7px
+        &-type
+            grid-column: 1/3
+            color: #022959
+            font-size: 16px
+            font-weight: 500
+            line-height: normal
+        &-change
+            color: #9699AA
+            font-size: 14px
+            font-weight: 400
+            line-height: 20px
+            width: 48px
+            text-decoration-line: underline
+            cursor: pointer
+            &:hover
+                color: #483EFF
+        &-price
+            justify-self: right
+            color: #022959
+            font-size: 16px
+            font-weight: 700
+            line-height: 20px
+            position: relative
+            bottom: 10px
+    hr
+        margin: 24px 0 16px 0
+
+    &__addons
+        display: grid
+        grid-auto-rows: 20px
+        grid-auto-columns: 1fr
+        row-gap: 16px
+        justify-content: space-between
+    &__addon
+        display: flex
+        justify-content: space-between
+        &-title
+            color: #9699AA
+            font-size: 14px
+            font-weight: 400
+            line-height: 20px
+        &-price 
+            color: #022959
+            font-size: 14px
+            font-weight: 400
+            line-height: 20px
+    &__total
+        padding: 25px 24px 0 24px
+        display: flex
+        justify-content: space-between
+        &-title
+            color:  #9699AA
+            font-size: 14px
+            font-weight: 400
+            line-height: 20px
+        &-price
+            color: #483EFF
+            font-size: 20px
+            font-weight: 700
+            line-height: 20px
+    &__btns
+        position: absolute
+        width: 100%
+        bottom: 16px
+        height: 48px
+        display: flex
+        justify-content: space-between
+        align-items: center
+        &-back
+            color: #9699AA
+            font-size: 16px
+            font-weight: 500
+            line-height: normal
+            border: none
+            background-color: #FFF
+            &:hover
+                color: #022959
+        &-next
+            border: none
+            width: 123px
+            height: 48px
+            background-color: #483EFF
+            font-size: 16px
+            font-weight: 500
+            line-height: normal
+            border-radius: 8px
+            color: #FFF
+            &:hover
+                background-color: #928CFF

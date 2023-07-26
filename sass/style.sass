@@ -1,3 +1,31 @@
-
 *
-    font-family: 'Outfit', sans-serif
+    font-family: 'Ubuntu'
+
+body 
+    display: grid
+    background-color: #eff5ff
+    justify-content: center
+    align-items: center
+    height: 100vh
+
+.container
+    width: 940px
+    height: 600px
+    border-radius: 15px
+    background-color: #ffffff
+    box-shadow: 0px 25px 40px -20px rgba(0, 0, 0, 0.10)
+    padding: 16px 100px 16px 16px
+    display: grid
+    grid-template-columns: 274px 450px
+    column-gap: 100px
+
+@import "blocks/title"
+@import "blocks/menu"
+@import "blocks/info"
+@import "blocks/plan"
+@import "blocks/addons"
+@import "blocks/finish"
+@import "blocks/thanks"
+
+.hidden 
+    display: none    

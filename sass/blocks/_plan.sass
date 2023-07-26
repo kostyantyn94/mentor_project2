@@ -1,0 +1,133 @@
+.plan
+    padding: 40px 0 16px 0
+    width: 450px
+    &__wrapper
+        margin-top: 35px
+        display: grid
+        grid-template-columns: repeat(3, 138px)
+        grid-template-rows: 160px 48px
+        column-gap: 18px
+        row-gap: 32px
+    &__item
+        padding: 20px 20px 20px 16px
+        width: 138px
+        height: 160px
+        border-radius: 8px
+        border: 1px solid #D6D9E6
+        cursor: pointer
+        img
+            width: 40px
+            height: 40px
+        &_active
+            border-radius: 8px
+            border: 1px solid #483EFF
+            background: #F8F9FF
+        &:hover
+            border: 1px solid #483EFF
+    &__name 
+        margin-top: 39px
+        color:  #022959
+        font-size: 16px
+        font-weight: 500
+        line-height: normal
+    &__price
+        margin-top: 7px
+        color: #9699AA
+        font-size: 14px
+        font-weight: 400
+        line-height: normal
+
+    &__time
+        grid-column: 1/4
+        width: 100%
+        height: 48px
+        display: flex
+        justify-content: center
+        align-items: center
+        border-radius: 8px
+        background: #F8F9FF
+        &-wrapper
+            display: flex
+            align-items: center
+        &-month
+            color: #9699AA
+            font-size: 14px
+            font-weight: 700
+            line-height: normal
+        &-year
+            color: #9699AA
+            font-size: 14px
+            font-weight: 700
+            line-height: normal
+        &_active
+            color: #022959
+
+    &__switch
+        margin: 0 24px
+        position: relative
+        display: inline-block
+        width: 38px
+        height: 20px
+    &__input
+        display: none
+    &__slider
+        position: absolute
+        cursor: pointer
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        background-color: #022959
+        -webkit-transition: .4s
+        transition: .4s
+        border-radius: 34px
+        &::before
+            position: absolute
+            content: ""
+            height: 12px
+            width: 12px
+            left: 4px
+            bottom: 4px
+            background-color: white
+            -webkit-transition: .4s
+            transition: .4s
+            border-radius: 50%
+    &__input:checked + &__slider 
+        background-color: #022959
+
+    &__input + &__slider 
+        box-shadow: 0 0 1px #022959
+
+    &__input:checked + &__slider:before 
+        -webkit-transform: translateX(18px)
+        -ms-transform: translateX(18px)
+        transform: translateX(18px)
+
+    &__btns
+        margin-top: 116px
+        width: 100%
+        height: 48px
+        display: flex
+        justify-content: space-between
+        align-items: center
+        &-back
+            color: #9699AA
+            font-size: 16px
+            font-weight: 500
+            line-height: normal
+            border: none
+            background-color: #FFF
+            &:hover
+                color: #022959
+        &-next
+            border: none
+            width: 123px
+            height: 48px
+            background-color: #022959
+            font-size: 16px
+            font-weight: 500
+            line-height: normal
+            border-radius: 8px
+            color: #FFF
+            &:hover
+                background-color: #164A8A
