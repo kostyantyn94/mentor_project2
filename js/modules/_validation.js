@@ -25,26 +25,22 @@ const createErrorBlocks = () => {
 
 const validateName = (element, error_block_name) => {
     
-    globalState.name = []
     if(/\d/.test(element.value)) {
         element.style.outline = "1px solid red"
         element.before(error_block_name);
         error_block_name.innerHTML = "Name can not contain digits";
-        globalState.name.push("Name can not contain digits")
         globalState.name = true
     }
     else if (element.value.length === 0) {
         element.style.outline = "1px solid red"
         element.before(error_block_name);
         error_block_name.innerHTML = "Field can not be empty";
-        globalState.name.push("Field can not be empty")
         globalState.name = true
     }
     else if (element.value.length > 20) {
         element.style.outline = "1px solid red"
         element.before(error_block_name);
         error_block_name.innerHTML = "Name can not be longer than 20 characters";
-        globalState.name.push("Name can not be longer than 20 characters")
         globalState.name = true
     }
     else {
@@ -77,7 +73,6 @@ const validateEmail = (element, error_block_email) => {
         globalState.email = false
     }
 }
-
 
 const validatePhone = (element, error_block_phone) => {
     if (!element.value.length) {
